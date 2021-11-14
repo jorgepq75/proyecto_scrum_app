@@ -1,0 +1,56 @@
+﻿@model IEnumerable<scrum_app.DB_Model.sc_spring_backlog>
+﻿@using scrum_app.Models.spring
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sprint Backlog</h2>
+@{ if (@CurrentSpring.GetCurrentSpring().id_spring > 0)
+    {
+        <p><b>Sprint actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
+    }}
+<p>
+    @Html.ActionLink("Agregar nueva", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            Título
+        </th>
+        <th>
+            Historia
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_historia_usuario.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_spring.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+
+                @Html.ActionLink(
+                    linkText: "Ver historia",
+                    actionName: "Details",
+                    controllerName: "Historia_usuario",
+                    routeValues: new { id = item.fk_historia_usuario },
+                    htmlAttributes: new { }) 
+               
+            </td>
+        </tr>
+    }
+
+</table>

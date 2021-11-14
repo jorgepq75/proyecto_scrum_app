@@ -1,0 +1,45 @@
+﻿@model scrum_app.DB_Model.sc_equipo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>sc_equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>Proyecto</b>@Model.sc_proyecto.nombre
+        </dt>
+        <dt>
+            <b>Proyecto</b>@Model.sc_proyecto.nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sc_proyecto.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sc_proyecto.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sc_usuario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sc_usuario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_equipo }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

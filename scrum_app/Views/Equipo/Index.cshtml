@@ -1,0 +1,34 @@
+﻿@model IEnumerable<scrum_app.DB_Model.sc_equipo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Equipo de trabajo</h2>
+
+<p>
+    @Html.ActionLink("Nuevo miembro de equipo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Proyecto
+        </th>
+        <th>
+            Usuario
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
+        </td>
+        <td>
+            @item.sc_usuario.nombre-@item.sc_usuario.sc_rol.rol
+        </td>
+
+    </tr>
+}
+
+</table>

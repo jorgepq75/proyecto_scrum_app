@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="proyecto_scrumModelStoreContainer" CdmEntityContainer="proyecto_scrumEntities">
+    <EntitySetMapping Name="sc_epica">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_epica">
+        <MappingFragment StoreEntitySet="sc_epica">
+          <ScalarProperty Name="id_epica" ColumnName="id_epica" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+          <ScalarProperty Name="descricion" ColumnName="descricion" />
+          <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_equipo">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_equipo">
+        <MappingFragment StoreEntitySet="sc_equipo">
+          <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+          <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+          <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_estado_historia_usuario">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_historia_usuario">
+        <MappingFragment StoreEntitySet="sc_estado_historia_usuario">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_estado_proyecto">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_proyecto">
+        <MappingFragment StoreEntitySet="sc_estado_proyecto">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_estado_spring">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_spring">
+        <MappingFragment StoreEntitySet="sc_estado_spring">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_historia_usuario">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_historia_usuario">
+        <MappingFragment StoreEntitySet="sc_historia_usuario">
+          <ScalarProperty Name="id_historia_usuario" ColumnName="id_historia_usuario" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descricion" ColumnName="descricion" />
+          <ScalarProperty Name="fk_epica" ColumnName="fk_epica" />
+          <ScalarProperty Name="fk_asignado_a" ColumnName="fk_asignado_a" />
+          <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+          <ScalarProperty Name="fk_estado_historia_usuario" ColumnName="fk_estado_historia_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_proyecto">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_proyecto">
+        <MappingFragment StoreEntitySet="sc_proyecto">
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+          <ScalarProperty Name="fk_estado_proyecto" ColumnName="fk_estado_proyecto" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_rol">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_rol">
+        <MappingFragment StoreEntitySet="sc_rol">
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_spring">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring">
+        <MappingFragment StoreEntitySet="sc_spring">
+          <ScalarProperty Name="id_spring" ColumnName="id_spring" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+          <ScalarProperty Name="fk_estado_spring" ColumnName="fk_estado_spring" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_spring_backlog">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_backlog">
+        <MappingFragment StoreEntitySet="sc_spring_backlog">
+          <ScalarProperty Name="id_spring_backlog" ColumnName="id_spring_backlog" />
+          <ScalarProperty Name="fk_spring" ColumnName="fk_spring" />
+          <ScalarProperty Name="fk_historia_usuario" ColumnName="fk_historia_usuario" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_spring_meeting">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_meeting">
+        <MappingFragment StoreEntitySet="sc_spring_meeting">
+          <ScalarProperty Name="id_spring_meeting" ColumnName="id_spring_meeting" />
+          <ScalarProperty Name="fk_spring" ColumnName="fk_spring" />
+          <ScalarProperty Name="fk_spring_meeting_type" ColumnName="fk_spring_meeting_type" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_spring_meeting_type">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_meeting_type">
+        <MappingFragment StoreEntitySet="sc_spring_meeting_type">
+          <ScalarProperty Name="id_meeting_type" ColumnName="id_meeting_type" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sc_usuario">
+      <EntityTypeMapping TypeName="proyecto_scrumModel.sc_usuario">
+        <MappingFragment StoreEntitySet="sc_usuario">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+          <ScalarProperty Name="fk_rol" ColumnName="fk_rol" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

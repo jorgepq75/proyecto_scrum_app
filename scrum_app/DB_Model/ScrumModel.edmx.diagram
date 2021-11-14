@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d3207cf725b4e3cb54fe418aa9abed4" Name="Diagram1">
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_epica" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_equipo" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_estado_historia_usuario" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_estado_proyecto" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_estado_spring" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_historia_usuario" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_proyecto" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_rol" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_spring" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_spring_backlog" Width="1.5" PointX="12.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_spring_meeting" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_spring_meeting_type" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyecto_scrumModel.sc_usuario" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_epica__fk_cre__48A5B54C" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_epica__fk_pro__4999D985" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_histor__fk_ep__522F1F86" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_equipo__fk_pr__43E1002F" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_equipo__fk_us__42ECDBF6" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_histor__fk_es__532343BF" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_proyec__fk_es__40106F4B" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_es__5BB889C0" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_histor__fk_as__5046D714" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_histor__fk_cr__513AFB4D" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_hi__691284DE" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_proyec__fk_cr__3F1C4B12" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_pr__5AC46587" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_usuari__fk_ro__386F4D83" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_cr__59D0414E" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_sp__644DCFC1" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_sp__681E60A5" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_cr__6265874F" ManuallyRouted="false" />
+        <AssociationConnector Association="proyecto_scrumModel.FK__sc_spring__fk_sp__6359AB88" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

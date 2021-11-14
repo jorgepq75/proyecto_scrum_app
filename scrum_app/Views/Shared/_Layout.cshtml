@@ -1,0 +1,88 @@
+﻿﻿@using scrum_app.Models.proyecto
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary navbar-dark bg-dark">
+        <div class="flex-row d-flex">
+            <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas" title="Toggle responsive left sidebar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#" title="Scrum App">Scrum App</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <ul class="navbar-nav">
+
+                @*add links here*@
+                @{ if (CurrentProject.GetCurrentProject().id_proyecto > 0)
+                    {
+                        <li class="nav-item"><b> Proyecto actual: </b> @CurrentProject.GetCurrentProject().nombre </li>
+                    }
+                }
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="btn btn-outline-info">
+                    @Html.ActionLink(
+                    linkText: "Cerrar Sesión",
+                    actionName: "closeSession",
+                    controllerName: "Login",
+                    routeValues: null,
+                    htmlAttributes: new { @class = "nav-link" })
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid mt-5 pt-3 sc_body_content" id="main">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0 navbar-dark bg-dark" id="sidebar" role="navigation">
+                <ul class="nav flex-column sticky-top vertical_menu">
+                    <li class="nav-item">@Html.ActionLink("Proyectos", "Index", "Proyecto", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
+                    @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
+                        {
+                            <li class="nav-item">@Html.ActionLink("Product Backlog", "Index", "Epica", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
+
+                    @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
+                        {
+                            <li class="nav-item">@Html.ActionLink("Sprint", "Index", "Spring", new { area = "" }, new { @class = "nav-link" })</li>
+                        }
+                    }
+
+                </ul>
+            </div>
+            <!--/col-->
+
+            <div class="col main mt-3">
+                @*body content*@
+              
+                @RenderBody()
+
+                <footer>
+                   
+                </footer>
+            </div>
+            <!--/main col-->
+        </div>
+
+    </div>
+    <!--/.container-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

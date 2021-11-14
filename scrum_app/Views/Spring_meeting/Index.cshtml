@@ -1,0 +1,49 @@
+﻿@model IEnumerable<scrum_app.DB_Model.sc_spring_meeting>
+﻿@using scrum_app.Models.spring
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reuniones de Spring</h2>
+@{ if (@CurrentSpring.GetCurrentSpring().id_spring > 0)
+    {
+        <p><b>Spring actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
+    }}
+
+<p>
+    @Html.ActionLink("Nueva reunión", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Reunión
+        </th>
+        <th>
+            Spring
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_spring_meeting_type.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_spring.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+ 
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { id = item.id_spring_meeting }) 
+            </td>
+        </tr>
+    }
+
+</table>

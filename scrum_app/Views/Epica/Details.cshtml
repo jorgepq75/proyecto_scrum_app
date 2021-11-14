@@ -1,0 +1,32 @@
+﻿@model scrum_app.DB_Model.sc_epica
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle epica</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <b>Título: </b>@Model.titulo
+        </dd>
+
+        <dd>
+           <b>Descripción: </b> @Model.descricion
+        </dd>
+
+        <dd>
+            <b>Fecha de creación: </b>@Model.fecha_creacion
+        </dd>
+
+        <dd>
+            <b>Proyecto: </b>@Model.sc_proyecto.nombre
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>

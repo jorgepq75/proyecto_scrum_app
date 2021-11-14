@@ -1,0 +1,1103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="proyecto_scrumModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sc_epica">
+          <Key>
+            <PropertyRef Name="id_epica" />
+          </Key>
+          <Property Name="id_epica" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fk_proyecto" Type="bigint" Nullable="false" />
+          <Property Name="descricion" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="fk_creado_por" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_equipo">
+          <Key>
+            <PropertyRef Name="id_equipo" />
+          </Key>
+          <Property Name="id_equipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_proyecto" Type="bigint" Nullable="false" />
+          <Property Name="fk_usuario" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_estado_historia_usuario">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sc_estado_proyecto">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sc_estado_spring">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sc_historia_usuario">
+          <Key>
+            <PropertyRef Name="id_historia_usuario" />
+          </Key>
+          <Property Name="id_historia_usuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="descricion" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="fk_epica" Type="bigint" />
+          <Property Name="fk_asignado_a" Type="int" />
+          <Property Name="fk_creado_por" Type="int" Nullable="false" />
+          <Property Name="fk_estado_historia_usuario" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="600" Nullable="false" />
+          <Property Name="fk_creado_por" Type="int" Nullable="false" />
+          <Property Name="fk_estado_proyecto" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_cierre" Type="date" />
+        </EntityType>
+        <EntityType Name="sc_rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="rol" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_spring">
+          <Key>
+            <PropertyRef Name="id_spring" />
+          </Key>
+          <Property Name="id_spring" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="fk_creado_por" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fk_proyecto" Type="bigint" Nullable="false" />
+          <Property Name="fk_estado_spring" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sc_spring_backlog">
+          <Key>
+            <PropertyRef Name="id_spring_backlog" />
+          </Key>
+          <Property Name="id_spring_backlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_spring" Type="bigint" Nullable="false" />
+          <Property Name="fk_historia_usuario" Type="bigint" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_spring_meeting">
+          <Key>
+            <PropertyRef Name="id_spring_meeting" />
+          </Key>
+          <Property Name="id_spring_meeting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_spring" Type="bigint" Nullable="false" />
+          <Property Name="fk_spring_meeting_type" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fk_creado_por" Type="int" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="600" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sc_spring_meeting_type">
+          <Key>
+            <PropertyRef Name="id_meeting_type" />
+          </Key>
+          <Property Name="id_meeting_type" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sc_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="contrasena" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="fk_rol" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__sc_epica__fk_cre__48A5B54C">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_epica">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_epica__fk_pro__4999D985">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_epica">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_equipo__fk_pr__43E1002F">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_equipo" Type="Self.sc_equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_equipo">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_equipo__fk_us__42ECDBF6">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_equipo" Type="Self.sc_equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_equipo">
+              <PropertyRef Name="fk_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_as__5046D714">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="0..1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_asignado_a" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_cr__513AFB4D">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_ep__522F1F86">
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="0..1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_epica">
+              <PropertyRef Name="id_epica" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_epica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_es__532343BF">
+          <End Role="sc_estado_historia_usuario" Type="Self.sc_estado_historia_usuario" Multiplicity="1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_historia_usuario">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_estado_historia_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_proyec__fk_cr__3F1C4B12">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_proyecto">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_proyec__fk_es__40106F4B">
+          <End Role="sc_estado_proyecto" Type="Self.sc_estado_proyecto" Multiplicity="1" />
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_proyecto">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_proyecto">
+              <PropertyRef Name="fk_estado_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_cr__59D0414E">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_cr__6265874F">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_es__5BB889C0">
+          <End Role="sc_estado_spring" Type="Self.sc_estado_spring" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_spring">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_estado_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_hi__691284DE">
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="1" />
+          <End Role="sc_spring_backlog" Type="Self.sc_spring_backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_historia_usuario">
+              <PropertyRef Name="id_historia_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring_backlog">
+              <PropertyRef Name="fk_historia_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_pr__5AC46587">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__6359AB88">
+          <End Role="sc_spring_meeting_type" Type="Self.sc_spring_meeting_type" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring_meeting_type">
+              <PropertyRef Name="id_meeting_type" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_spring_meeting_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__644DCFC1">
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring">
+              <PropertyRef Name="id_spring" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__681E60A5">
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="1" />
+          <End Role="sc_spring_backlog" Type="Self.sc_spring_backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring">
+              <PropertyRef Name="id_spring" />
+            </Principal>
+            <Dependent Role="sc_spring_backlog">
+              <PropertyRef Name="fk_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_usuari__fk_ro__386F4D83">
+          <End Role="sc_rol" Type="Self.sc_rol" Multiplicity="1" />
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="sc_usuario">
+              <PropertyRef Name="fk_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyecto_scrumModelStoreContainer">
+          <EntitySet Name="sc_epica" EntityType="Self.sc_epica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_equipo" EntityType="Self.sc_equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_estado_historia_usuario" EntityType="Self.sc_estado_historia_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_estado_proyecto" EntityType="Self.sc_estado_proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_estado_spring" EntityType="Self.sc_estado_spring" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_historia_usuario" EntityType="Self.sc_historia_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_proyecto" EntityType="Self.sc_proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_rol" EntityType="Self.sc_rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_spring" EntityType="Self.sc_spring" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_spring_backlog" EntityType="Self.sc_spring_backlog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_spring_meeting" EntityType="Self.sc_spring_meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_spring_meeting_type" EntityType="Self.sc_spring_meeting_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sc_usuario" EntityType="Self.sc_usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__sc_epica__fk_cre__48A5B54C" Association="Self.FK__sc_epica__fk_cre__48A5B54C">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_epica" EntitySet="sc_epica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_epica__fk_pro__4999D985" Association="Self.FK__sc_epica__fk_pro__4999D985">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_epica" EntitySet="sc_epica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_equipo__fk_pr__43E1002F" Association="Self.FK__sc_equipo__fk_pr__43E1002F">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_equipo" EntitySet="sc_equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_equipo__fk_us__42ECDBF6" Association="Self.FK__sc_equipo__fk_us__42ECDBF6">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_equipo" EntitySet="sc_equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_as__5046D714" Association="Self.FK__sc_histor__fk_as__5046D714">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_cr__513AFB4D" Association="Self.FK__sc_histor__fk_cr__513AFB4D">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_ep__522F1F86" Association="Self.FK__sc_histor__fk_ep__522F1F86">
+            <End Role="sc_epica" EntitySet="sc_epica" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_es__532343BF" Association="Self.FK__sc_histor__fk_es__532343BF">
+            <End Role="sc_estado_historia_usuario" EntitySet="sc_estado_historia_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_proyec__fk_cr__3F1C4B12" Association="Self.FK__sc_proyec__fk_cr__3F1C4B12">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_proyec__fk_es__40106F4B" Association="Self.FK__sc_proyec__fk_es__40106F4B">
+            <End Role="sc_estado_proyecto" EntitySet="sc_estado_proyecto" />
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_cr__59D0414E" Association="Self.FK__sc_spring__fk_cr__59D0414E">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_cr__6265874F" Association="Self.FK__sc_spring__fk_cr__6265874F">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_es__5BB889C0" Association="Self.FK__sc_spring__fk_es__5BB889C0">
+            <End Role="sc_estado_spring" EntitySet="sc_estado_spring" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_hi__691284DE" Association="Self.FK__sc_spring__fk_hi__691284DE">
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+            <End Role="sc_spring_backlog" EntitySet="sc_spring_backlog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_pr__5AC46587" Association="Self.FK__sc_spring__fk_pr__5AC46587">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__6359AB88" Association="Self.FK__sc_spring__fk_sp__6359AB88">
+            <End Role="sc_spring_meeting_type" EntitySet="sc_spring_meeting_type" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__644DCFC1" Association="Self.FK__sc_spring__fk_sp__644DCFC1">
+            <End Role="sc_spring" EntitySet="sc_spring" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__681E60A5" Association="Self.FK__sc_spring__fk_sp__681E60A5">
+            <End Role="sc_spring" EntitySet="sc_spring" />
+            <End Role="sc_spring_backlog" EntitySet="sc_spring_backlog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_usuari__fk_ro__386F4D83" Association="Self.FK__sc_usuari__fk_ro__386F4D83">
+            <End Role="sc_rol" EntitySet="sc_rol" />
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="proyecto_scrumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sc_epica">
+          <Key>
+            <PropertyRef Name="id_epica" />
+          </Key>
+          <Property Name="id_epica" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_proyecto" Type="Int64" Nullable="false" />
+          <Property Name="descricion" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_creado_por" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_epica__fk_cre__48A5B54C" FromRole="sc_epica" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_proyecto" Relationship="Self.FK__sc_epica__fk_pro__4999D985" FromRole="sc_epica" ToRole="sc_proyecto" />
+          <NavigationProperty Name="sc_historia_usuario" Relationship="Self.FK__sc_histor__fk_ep__522F1F86" FromRole="sc_epica" ToRole="sc_historia_usuario" />
+        </EntityType>
+        <EntityType Name="sc_equipo">
+          <Key>
+            <PropertyRef Name="id_equipo" />
+          </Key>
+          <Property Name="id_equipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_proyecto" Type="Int64" Nullable="false" />
+          <Property Name="fk_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_proyecto" Relationship="Self.FK__sc_equipo__fk_pr__43E1002F" FromRole="sc_equipo" ToRole="sc_proyecto" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_equipo__fk_us__42ECDBF6" FromRole="sc_equipo" ToRole="sc_usuario" />
+        </EntityType>
+        <EntityType Name="sc_estado_historia_usuario">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sc_historia_usuario" Relationship="Self.FK__sc_histor__fk_es__532343BF" FromRole="sc_estado_historia_usuario" ToRole="sc_historia_usuario" />
+        </EntityType>
+        <EntityType Name="sc_estado_proyecto">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sc_proyecto" Relationship="Self.FK__sc_proyec__fk_es__40106F4B" FromRole="sc_estado_proyecto" ToRole="sc_proyecto" />
+        </EntityType>
+        <EntityType Name="sc_estado_spring">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sc_spring" Relationship="Self.FK__sc_spring__fk_es__5BB889C0" FromRole="sc_estado_spring" ToRole="sc_spring" />
+        </EntityType>
+        <EntityType Name="sc_historia_usuario">
+          <Key>
+            <PropertyRef Name="id_historia_usuario" />
+          </Key>
+          <Property Name="id_historia_usuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descricion" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_epica" Type="Int64" />
+          <Property Name="fk_asignado_a" Type="Int32" />
+          <Property Name="fk_creado_por" Type="Int32" Nullable="false" />
+          <Property Name="fk_estado_historia_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_epica" Relationship="Self.FK__sc_histor__fk_ep__522F1F86" FromRole="sc_historia_usuario" ToRole="sc_epica" />
+          <NavigationProperty Name="sc_estado_historia_usuario" Relationship="Self.FK__sc_histor__fk_es__532343BF" FromRole="sc_historia_usuario" ToRole="sc_estado_historia_usuario" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_histor__fk_as__5046D714" FromRole="sc_historia_usuario" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_usuario1" Relationship="Self.FK__sc_histor__fk_cr__513AFB4D" FromRole="sc_historia_usuario" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_spring_backlog" Relationship="Self.FK__sc_spring__fk_hi__691284DE" FromRole="sc_historia_usuario" ToRole="sc_spring_backlog" />
+        </EntityType>
+        <EntityType Name="sc_proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_creado_por" Type="Int32" Nullable="false" />
+          <Property Name="fk_estado_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_cierre" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="sc_epica" Relationship="Self.FK__sc_epica__fk_pro__4999D985" FromRole="sc_proyecto" ToRole="sc_epica" />
+          <NavigationProperty Name="sc_equipo" Relationship="Self.FK__sc_equipo__fk_pr__43E1002F" FromRole="sc_proyecto" ToRole="sc_equipo" />
+          <NavigationProperty Name="sc_estado_proyecto" Relationship="Self.FK__sc_proyec__fk_es__40106F4B" FromRole="sc_proyecto" ToRole="sc_estado_proyecto" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_proyec__fk_cr__3F1C4B12" FromRole="sc_proyecto" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_spring" Relationship="Self.FK__sc_spring__fk_pr__5AC46587" FromRole="sc_proyecto" ToRole="sc_spring" />
+        </EntityType>
+        <EntityType Name="sc_rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_usuari__fk_ro__386F4D83" FromRole="sc_rol" ToRole="sc_usuario" />
+        </EntityType>
+        <EntityType Name="sc_spring">
+          <Key>
+            <PropertyRef Name="id_spring" />
+          </Key>
+          <Property Name="id_spring" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_creado_por" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fk_proyecto" Type="Int64" Nullable="false" />
+          <Property Name="fk_estado_spring" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sc_estado_spring" Relationship="Self.FK__sc_spring__fk_es__5BB889C0" FromRole="sc_spring" ToRole="sc_estado_spring" />
+          <NavigationProperty Name="sc_proyecto" Relationship="Self.FK__sc_spring__fk_pr__5AC46587" FromRole="sc_spring" ToRole="sc_proyecto" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_spring__fk_cr__59D0414E" FromRole="sc_spring" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_spring_meeting" Relationship="Self.FK__sc_spring__fk_sp__644DCFC1" FromRole="sc_spring" ToRole="sc_spring_meeting" />
+          <NavigationProperty Name="sc_spring_backlog" Relationship="Self.FK__sc_spring__fk_sp__681E60A5" FromRole="sc_spring" ToRole="sc_spring_backlog" />
+        </EntityType>
+        <EntityType Name="sc_spring_backlog">
+          <Key>
+            <PropertyRef Name="id_spring_backlog" />
+          </Key>
+          <Property Name="id_spring_backlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_spring" Type="Int64" Nullable="false" />
+          <Property Name="fk_historia_usuario" Type="Int64" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_historia_usuario" Relationship="Self.FK__sc_spring__fk_hi__691284DE" FromRole="sc_spring_backlog" ToRole="sc_historia_usuario" />
+          <NavigationProperty Name="sc_spring" Relationship="Self.FK__sc_spring__fk_sp__681E60A5" FromRole="sc_spring_backlog" ToRole="sc_spring" />
+        </EntityType>
+        <EntityType Name="sc_spring_meeting">
+          <Key>
+            <PropertyRef Name="id_spring_meeting" />
+          </Key>
+          <Property Name="id_spring_meeting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_spring" Type="Int64" Nullable="false" />
+          <Property Name="fk_spring_meeting_type" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fk_creado_por" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="600" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="sc_spring" Relationship="Self.FK__sc_spring__fk_sp__644DCFC1" FromRole="sc_spring_meeting" ToRole="sc_spring" />
+          <NavigationProperty Name="sc_usuario" Relationship="Self.FK__sc_spring__fk_cr__6265874F" FromRole="sc_spring_meeting" ToRole="sc_usuario" />
+          <NavigationProperty Name="sc_spring_meeting_type" Relationship="Self.FK__sc_spring__fk_sp__6359AB88" FromRole="sc_spring_meeting" ToRole="sc_spring_meeting_type" />
+        </EntityType>
+        <EntityType Name="sc_spring_meeting_type">
+          <Key>
+            <PropertyRef Name="id_meeting_type" />
+          </Key>
+          <Property Name="id_meeting_type" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_spring_meeting" Relationship="Self.FK__sc_spring__fk_sp__6359AB88" FromRole="sc_spring_meeting_type" ToRole="sc_spring_meeting" />
+        </EntityType>
+        <EntityType Name="sc_usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fk_rol" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sc_epica" Relationship="Self.FK__sc_epica__fk_cre__48A5B54C" FromRole="sc_usuario" ToRole="sc_epica" />
+          <NavigationProperty Name="sc_equipo" Relationship="Self.FK__sc_equipo__fk_us__42ECDBF6" FromRole="sc_usuario" ToRole="sc_equipo" />
+          <NavigationProperty Name="sc_historia_usuario" Relationship="Self.FK__sc_histor__fk_as__5046D714" FromRole="sc_usuario" ToRole="sc_historia_usuario" />
+          <NavigationProperty Name="sc_historia_usuario1" Relationship="Self.FK__sc_histor__fk_cr__513AFB4D" FromRole="sc_usuario" ToRole="sc_historia_usuario" />
+          <NavigationProperty Name="sc_proyecto" Relationship="Self.FK__sc_proyec__fk_cr__3F1C4B12" FromRole="sc_usuario" ToRole="sc_proyecto" />
+          <NavigationProperty Name="sc_rol" Relationship="Self.FK__sc_usuari__fk_ro__386F4D83" FromRole="sc_usuario" ToRole="sc_rol" />
+          <NavigationProperty Name="sc_spring" Relationship="Self.FK__sc_spring__fk_cr__59D0414E" FromRole="sc_usuario" ToRole="sc_spring" />
+          <NavigationProperty Name="sc_spring_meeting" Relationship="Self.FK__sc_spring__fk_cr__6265874F" FromRole="sc_usuario" ToRole="sc_spring_meeting" />
+        </EntityType>
+        <Association Name="FK__sc_epica__fk_cre__48A5B54C">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_epica">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_epica__fk_pro__4999D985">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_epica">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_ep__522F1F86">
+          <End Role="sc_epica" Type="Self.sc_epica" Multiplicity="0..1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_epica">
+              <PropertyRef Name="id_epica" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_epica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_equipo__fk_pr__43E1002F">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_equipo" Type="Self.sc_equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_equipo">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_equipo__fk_us__42ECDBF6">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_equipo" Type="Self.sc_equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_equipo">
+              <PropertyRef Name="fk_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_es__532343BF">
+          <End Role="sc_estado_historia_usuario" Type="Self.sc_estado_historia_usuario" Multiplicity="1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_historia_usuario">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_estado_historia_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_proyec__fk_es__40106F4B">
+          <End Role="sc_estado_proyecto" Type="Self.sc_estado_proyecto" Multiplicity="1" />
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_proyecto">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_proyecto">
+              <PropertyRef Name="fk_estado_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_es__5BB889C0">
+          <End Role="sc_estado_spring" Type="Self.sc_estado_spring" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_estado_spring">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_estado_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_as__5046D714">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="0..1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_asignado_a" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_histor__fk_cr__513AFB4D">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_historia_usuario">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_hi__691284DE">
+          <End Role="sc_historia_usuario" Type="Self.sc_historia_usuario" Multiplicity="1" />
+          <End Role="sc_spring_backlog" Type="Self.sc_spring_backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_historia_usuario">
+              <PropertyRef Name="id_historia_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring_backlog">
+              <PropertyRef Name="fk_historia_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_proyec__fk_cr__3F1C4B12">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_proyecto">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_pr__5AC46587">
+          <End Role="sc_proyecto" Type="Self.sc_proyecto" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_usuari__fk_ro__386F4D83">
+          <End Role="sc_rol" Type="Self.sc_rol" Multiplicity="1" />
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="sc_usuario">
+              <PropertyRef Name="fk_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_cr__59D0414E">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__644DCFC1">
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring">
+              <PropertyRef Name="id_spring" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__681E60A5">
+          <End Role="sc_spring" Type="Self.sc_spring" Multiplicity="1" />
+          <End Role="sc_spring_backlog" Type="Self.sc_spring_backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring">
+              <PropertyRef Name="id_spring" />
+            </Principal>
+            <Dependent Role="sc_spring_backlog">
+              <PropertyRef Name="fk_spring" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_cr__6265874F">
+          <End Role="sc_usuario" Type="Self.sc_usuario" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_creado_por" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sc_spring__fk_sp__6359AB88">
+          <End Role="sc_spring_meeting_type" Type="Self.sc_spring_meeting_type" Multiplicity="1" />
+          <End Role="sc_spring_meeting" Type="Self.sc_spring_meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sc_spring_meeting_type">
+              <PropertyRef Name="id_meeting_type" />
+            </Principal>
+            <Dependent Role="sc_spring_meeting">
+              <PropertyRef Name="fk_spring_meeting_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyecto_scrumEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sc_epica" EntityType="Self.sc_epica" />
+          <EntitySet Name="sc_equipo" EntityType="Self.sc_equipo" />
+          <EntitySet Name="sc_estado_historia_usuario" EntityType="Self.sc_estado_historia_usuario" />
+          <EntitySet Name="sc_estado_proyecto" EntityType="Self.sc_estado_proyecto" />
+          <EntitySet Name="sc_estado_spring" EntityType="Self.sc_estado_spring" />
+          <EntitySet Name="sc_historia_usuario" EntityType="Self.sc_historia_usuario" />
+          <EntitySet Name="sc_proyecto" EntityType="Self.sc_proyecto" />
+          <EntitySet Name="sc_rol" EntityType="Self.sc_rol" />
+          <EntitySet Name="sc_spring" EntityType="Self.sc_spring" />
+          <EntitySet Name="sc_spring_backlog" EntityType="Self.sc_spring_backlog" />
+          <EntitySet Name="sc_spring_meeting" EntityType="Self.sc_spring_meeting" />
+          <EntitySet Name="sc_spring_meeting_type" EntityType="Self.sc_spring_meeting_type" />
+          <EntitySet Name="sc_usuario" EntityType="Self.sc_usuario" />
+          <AssociationSet Name="FK__sc_epica__fk_cre__48A5B54C" Association="Self.FK__sc_epica__fk_cre__48A5B54C">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_epica" EntitySet="sc_epica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_epica__fk_pro__4999D985" Association="Self.FK__sc_epica__fk_pro__4999D985">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_epica" EntitySet="sc_epica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_ep__522F1F86" Association="Self.FK__sc_histor__fk_ep__522F1F86">
+            <End Role="sc_epica" EntitySet="sc_epica" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_equipo__fk_pr__43E1002F" Association="Self.FK__sc_equipo__fk_pr__43E1002F">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_equipo" EntitySet="sc_equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_equipo__fk_us__42ECDBF6" Association="Self.FK__sc_equipo__fk_us__42ECDBF6">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_equipo" EntitySet="sc_equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_es__532343BF" Association="Self.FK__sc_histor__fk_es__532343BF">
+            <End Role="sc_estado_historia_usuario" EntitySet="sc_estado_historia_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_proyec__fk_es__40106F4B" Association="Self.FK__sc_proyec__fk_es__40106F4B">
+            <End Role="sc_estado_proyecto" EntitySet="sc_estado_proyecto" />
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_es__5BB889C0" Association="Self.FK__sc_spring__fk_es__5BB889C0">
+            <End Role="sc_estado_spring" EntitySet="sc_estado_spring" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_as__5046D714" Association="Self.FK__sc_histor__fk_as__5046D714">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_histor__fk_cr__513AFB4D" Association="Self.FK__sc_histor__fk_cr__513AFB4D">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_hi__691284DE" Association="Self.FK__sc_spring__fk_hi__691284DE">
+            <End Role="sc_historia_usuario" EntitySet="sc_historia_usuario" />
+            <End Role="sc_spring_backlog" EntitySet="sc_spring_backlog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_proyec__fk_cr__3F1C4B12" Association="Self.FK__sc_proyec__fk_cr__3F1C4B12">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_pr__5AC46587" Association="Self.FK__sc_spring__fk_pr__5AC46587">
+            <End Role="sc_proyecto" EntitySet="sc_proyecto" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_usuari__fk_ro__386F4D83" Association="Self.FK__sc_usuari__fk_ro__386F4D83">
+            <End Role="sc_rol" EntitySet="sc_rol" />
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_cr__59D0414E" Association="Self.FK__sc_spring__fk_cr__59D0414E">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_spring" EntitySet="sc_spring" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__644DCFC1" Association="Self.FK__sc_spring__fk_sp__644DCFC1">
+            <End Role="sc_spring" EntitySet="sc_spring" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__681E60A5" Association="Self.FK__sc_spring__fk_sp__681E60A5">
+            <End Role="sc_spring" EntitySet="sc_spring" />
+            <End Role="sc_spring_backlog" EntitySet="sc_spring_backlog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_cr__6265874F" Association="Self.FK__sc_spring__fk_cr__6265874F">
+            <End Role="sc_usuario" EntitySet="sc_usuario" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sc_spring__fk_sp__6359AB88" Association="Self.FK__sc_spring__fk_sp__6359AB88">
+            <End Role="sc_spring_meeting_type" EntitySet="sc_spring_meeting_type" />
+            <End Role="sc_spring_meeting" EntitySet="sc_spring_meeting" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="proyecto_scrumModelStoreContainer" CdmEntityContainer="proyecto_scrumEntities">
+          <EntitySetMapping Name="sc_epica">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_epica">
+              <MappingFragment StoreEntitySet="sc_epica">
+                <ScalarProperty Name="id_epica" ColumnName="id_epica" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+                <ScalarProperty Name="descricion" ColumnName="descricion" />
+                <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_equipo">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_equipo">
+              <MappingFragment StoreEntitySet="sc_equipo">
+                <ScalarProperty Name="id_equipo" ColumnName="id_equipo" />
+                <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+                <ScalarProperty Name="fk_usuario" ColumnName="fk_usuario" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_estado_historia_usuario">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_historia_usuario">
+              <MappingFragment StoreEntitySet="sc_estado_historia_usuario">
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_estado_proyecto">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_proyecto">
+              <MappingFragment StoreEntitySet="sc_estado_proyecto">
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_estado_spring">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_estado_spring">
+              <MappingFragment StoreEntitySet="sc_estado_spring">
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_historia_usuario">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_historia_usuario">
+              <MappingFragment StoreEntitySet="sc_historia_usuario">
+                <ScalarProperty Name="id_historia_usuario" ColumnName="id_historia_usuario" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descricion" ColumnName="descricion" />
+                <ScalarProperty Name="fk_epica" ColumnName="fk_epica" />
+                <ScalarProperty Name="fk_asignado_a" ColumnName="fk_asignado_a" />
+                <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+                <ScalarProperty Name="fk_estado_historia_usuario" ColumnName="fk_estado_historia_usuario" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_proyecto">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_proyecto">
+              <MappingFragment StoreEntitySet="sc_proyecto">
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+                <ScalarProperty Name="fk_estado_proyecto" ColumnName="fk_estado_proyecto" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_cierre" ColumnName="fecha_cierre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_rol">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_rol">
+              <MappingFragment StoreEntitySet="sc_rol">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_spring">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring">
+              <MappingFragment StoreEntitySet="sc_spring">
+                <ScalarProperty Name="id_spring" ColumnName="id_spring" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fk_proyecto" ColumnName="fk_proyecto" />
+                <ScalarProperty Name="fk_estado_spring" ColumnName="fk_estado_spring" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_spring_backlog">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_backlog">
+              <MappingFragment StoreEntitySet="sc_spring_backlog">
+                <ScalarProperty Name="id_spring_backlog" ColumnName="id_spring_backlog" />
+                <ScalarProperty Name="fk_spring" ColumnName="fk_spring" />
+                <ScalarProperty Name="fk_historia_usuario" ColumnName="fk_historia_usuario" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_spring_meeting">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_meeting">
+              <MappingFragment StoreEntitySet="sc_spring_meeting">
+                <ScalarProperty Name="id_spring_meeting" ColumnName="id_spring_meeting" />
+                <ScalarProperty Name="fk_spring" ColumnName="fk_spring" />
+                <ScalarProperty Name="fk_spring_meeting_type" ColumnName="fk_spring_meeting_type" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fk_creado_por" ColumnName="fk_creado_por" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_spring_meeting_type">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_spring_meeting_type">
+              <MappingFragment StoreEntitySet="sc_spring_meeting_type">
+                <ScalarProperty Name="id_meeting_type" ColumnName="id_meeting_type" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sc_usuario">
+            <EntityTypeMapping TypeName="proyecto_scrumModel.sc_usuario">
+              <MappingFragment StoreEntitySet="sc_usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="fk_rol" ColumnName="fk_rol" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

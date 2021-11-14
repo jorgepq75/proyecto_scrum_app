@@ -1,0 +1,22 @@
+﻿@model scrum_app.DB_Model.sc_proyecto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <b>Proyecto:</b> @Model.nombre
+        </dd>
+        <dd>
+            <b>Fecha:</b> @Model.fecha_creacion
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>

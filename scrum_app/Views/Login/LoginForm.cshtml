@@ -1,0 +1,63 @@
+﻿@model scrum_app.Models.usuario.LoginModel
+
+@{ ViewBag.Title = "Ingresar"; }
+
+
+@{ Layout = null; }
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+        <div class="">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                   
+                </div>
+                <div class="col-md-6 card">
+                    <h2 style="text-align:center;">Scrum App</h2>
+                    <div class="card-body">
+
+                        <div class="brand-wrapper text-center">
+                            
+                        </div>
+
+                        @using (Html.BeginForm("LoginForm", "Login", FormMethod.Post, new { @class = "register-form" }))
+                        {
+
+                            @Html.AntiForgeryToken()
+
+                          <p class="login-card-description">Iniciar sesión</p>
+                          <div class="form-group">
+                              @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                              @Html.TextBoxFor(x => x.email,
+                                                                   new { @class = "form-control" })
+                              @Html.ValidationMessageFor(x => x.email, null, new { @class = "text-danger" })
+                          </div>
+                          <div class="form-group">
+                              @Html.LabelFor(model => model.contrasena, htmlAttributes: new { @class = "control-label" })
+                              @Html.PasswordFor(x => x.contrasena,
+                                                                   new { @class = "form-control", placeholder = "*******" })
+                              @Html.ValidationMessageFor(x => x.contrasena, null, new { @class = "text-danger" })
+                          </div>
+                        <div class="form-group">
+                     
+                            <button class="btn btn-block btn-outline-info search-btn mb-4 mt-2" type="submit">
+                                Ingresar
+                            </button>
+                        </div>}
+
+                        @{ if (@TempData["successMessage"] != null)
+                            {
+                <div class="alert alert-success">
+                    @{
+                      @TempData["successMessage"] }
+                </div> } }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

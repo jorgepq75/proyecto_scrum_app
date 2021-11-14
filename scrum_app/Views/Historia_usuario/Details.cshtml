@@ -1,0 +1,41 @@
+﻿@model scrum_app.DB_Model.sc_historia_usuario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Historia de usuario</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <b>Epica: </b> @Model.sc_epica.titulo
+        </dd>
+
+        <dd>
+            <b>Título: </b> @Model.titulo
+        </dd>
+
+        <dd>
+            <b>Asignado a: </b> @Model.sc_usuario.nombre
+        </dd>
+
+        <dd>
+            <b>Fecha: </b> @Model.fecha_creacion
+        </dd>
+
+        <dd>
+            <b>Estado: </b> @Model.sc_estado_historia_usuario.estado
+        </dd>
+        <dd>
+            <b>Descripción: </b> @Model.descricion
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>

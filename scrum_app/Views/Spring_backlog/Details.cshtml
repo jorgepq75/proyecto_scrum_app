@@ -1,0 +1,42 @@
+﻿@model scrum_app.DB_Model.sc_spring_backlog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>sc_spring_backlog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sc_historia_usuario.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sc_historia_usuario.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sc_spring.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sc_spring.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_spring_backlog }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<scrum_app.DB_Model.sc_spring>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Sprint</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Sprint", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Sprint
+        </th>
+
+        <th>
+            Proyecto
+        </th>
+        <th>
+            Estado de Sprint
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombre)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.sc_estado_spring.estado)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha_creacion)
+    </td>
+    <td>
+        @Html.ActionLink(
+                linkText: "Sprint backlog",
+                actionName: "Index",
+                controllerName: "Spring_backlog",
+                routeValues: item,
+                htmlAttributes: new { }) |
+        @Html.ActionLink(
+                  linkText: "Reuniones",
+                  actionName: "Index",
+                  controllerName: "Spring_meeting",
+                  routeValues: item,
+                  htmlAttributes: new { }) |
+
+        @Html.ActionLink(
+                  linkText: "Editar",
+                  actionName: "Edit",
+                  controllerName: "Spring",
+                  routeValues: new { id= item.id_spring},
+                  htmlAttributes: new { })
+
+    </td>
+</tr>
+}
+
+</table>

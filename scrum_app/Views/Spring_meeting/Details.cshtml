@@ -1,0 +1,32 @@
+﻿@model scrum_app.DB_Model.sc_spring_meeting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle de reunión</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <b>Reunión: </b> @Model.sc_spring_meeting_type.nombre
+        </dd>
+
+        <dd>
+            <b>Spring: </b> @Model.sc_spring.nombre
+        </dd>
+
+        <dd>
+            <b>Fecha: </b> @Model.fecha_creacion
+        </dd>
+
+        <dd>
+            <b>Comentario: </b> @Model.comment
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Regresar", "Index")
+</p>
