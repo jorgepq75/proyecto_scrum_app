@@ -158,7 +158,7 @@ namespace scrum_app.Controllers.historia_usuario
                 };
                 db.Entry(hu).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Proyecto");
             }
             ViewBag.fk_asignado_a = new SelectList(db.sc_usuario, "id_usuario", "nombre", historiaUsuario.fk_asignado_a);
             ViewBag.fk_creado_por = new SelectList(db.sc_usuario, "id_usuario", "nombre", historiaUsuario.fk_creado_por);
@@ -168,39 +168,6 @@ namespace scrum_app.Controllers.historia_usuario
             return View(historiaUsuario);
         }
 
-        // GET: Historia_usuario/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_historia_usuario sc_historia_usuario = db.sc_historia_usuario.Find(id);
-            if (sc_historia_usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_historia_usuario);
-        }
 
-        // POST: Historia_usuario/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            sc_historia_usuario sc_historia_usuario = db.sc_historia_usuario.Find(id);
-            db.sc_historia_usuario.Remove(sc_historia_usuario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

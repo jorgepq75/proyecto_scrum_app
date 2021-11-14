@@ -117,39 +117,6 @@ namespace scrum_app.Controllers.usuario
             return View(sc_usuario);
         }
 
-        // GET: Usuario/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_usuario sc_usuario = db.sc_usuario.Find(id);
-            if (sc_usuario == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_usuario);
-        }
-
-        // POST: Usuario/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            sc_usuario sc_usuario = db.sc_usuario.Find(id);
-            db.sc_usuario.Remove(sc_usuario);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+   
     }
 }

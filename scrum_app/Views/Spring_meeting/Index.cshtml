@@ -16,7 +16,7 @@
 <table class="table">
     <tr>
         <th>
-           Reunión
+            Reunión
         </th>
         <th>
             Spring
@@ -39,11 +39,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.fecha_creacion)
             </td>
- 
+
             <td>
-                @Html.ActionLink("Detalle", "Details", new { id = item.id_spring_meeting }) 
+                @Html.ActionLink("Detalle", "Details", new { id = item.id_spring_meeting })
+
             </td>
         </tr>
     }
 
 </table>
+    @Html.ActionLink(
+        linkText: "Regresar",
+        actionName: "Index",
+        controllerName: "Spring",
+        routeValues: new {},
+        htmlAttributes: new { })

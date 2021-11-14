@@ -133,39 +133,6 @@ namespace scrum_app.Controllers.spring_backlog
             return View(sc_spring_backlog);
         }
 
-        // GET: Spring_backlog/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_spring_backlog sc_spring_backlog = db.sc_spring_backlog.Find(id);
-            if (sc_spring_backlog == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_spring_backlog);
-        }
-
-        // POST: Spring_backlog/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            sc_spring_backlog sc_spring_backlog = db.sc_spring_backlog.Find(id);
-            db.sc_spring_backlog.Remove(sc_spring_backlog);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+   
     }
 }

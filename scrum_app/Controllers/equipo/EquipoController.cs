@@ -56,7 +56,7 @@ namespace scrum_app.Controllers.equipo
                         .Select(x => new SelectListItem
                         {
                             Value = x.id_usuario.ToString(),
-                            Text = x.nombre+"-"+x.sc_rol.rol,
+                            Text = x.nombre + "-" + x.sc_rol.rol,
                         });
             ViewBag.fk_proyecto = new SelectList(db.sc_proyecto, "id_proyecto", "nombre");
             ViewBag.fk_usuario = new SelectList(usuarios, "Value", "Text");
@@ -123,39 +123,5 @@ namespace scrum_app.Controllers.equipo
             return View(sc_equipo);
         }
 
-        // GET: Equipo/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_equipo sc_equipo = db.sc_equipo.Find(id);
-            if (sc_equipo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_equipo);
-        }
-
-        // POST: Equipo/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            sc_equipo sc_equipo = db.sc_equipo.Find(id);
-            db.sc_equipo.Remove(sc_equipo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -118,39 +118,6 @@ namespace scrum_app.Controllers.epica
             return View(sc_epica);
         }
 
-        // GET: Epica/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_epica sc_epica = db.sc_epica.Find(id);
-            if (sc_epica == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_epica);
-        }
 
-        // POST: Epica/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            sc_epica sc_epica = db.sc_epica.Find(id);
-            db.sc_epica.Remove(sc_epica);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

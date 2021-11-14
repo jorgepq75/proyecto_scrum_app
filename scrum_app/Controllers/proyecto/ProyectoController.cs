@@ -129,40 +129,6 @@ namespace scrum_app.Controllers.proyecto
             return View(proyecto);
         }
 
-        // GET: Proyecto/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_proyecto sc_proyecto = db.sc_proyecto.Find(id);
-            if (sc_proyecto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_proyecto);
-        }
-
-        // POST: Proyecto/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            sc_proyecto sc_proyecto = db.sc_proyecto.Find(id);
-            db.sc_proyecto.Remove(sc_proyecto);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
         public ActionResult Choose(sc_proyecto proyecto)
         {

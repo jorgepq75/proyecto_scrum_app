@@ -18,7 +18,8 @@
         </dd>
 
         <dd>
-            <b>Asignado a: </b> @Model.sc_usuario.nombre
+            <b>Asignado a: </b> @{if (@Model.sc_usuario != null)
+                                { @Model.sc_usuario.nombre } }
         </dd>
 
         <dd>
@@ -37,5 +38,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Regresar", "Index")
+    @Html.ActionLink("Regresar", null, null, null, new { href = Request.UrlReferrer })
 </p>

@@ -134,39 +134,6 @@ namespace scrum_app.Controllers.spring
             return View(spring);
         }
 
-        // GET: Spring/Delete/5
-        public ActionResult Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_spring sc_spring = db.sc_spring.Find(id);
-            if (sc_spring == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_spring);
-        }
-
-        // POST: Spring/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
-        {
-            sc_spring sc_spring = db.sc_spring.Find(id);
-            db.sc_spring.Remove(sc_spring);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

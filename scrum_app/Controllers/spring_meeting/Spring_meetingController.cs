@@ -122,39 +122,6 @@ namespace scrum_app.Controllers.spring_event
             return View(sc_spring_meeting);
         }
 
-        // GET: Spring_meeting/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            sc_spring_meeting sc_spring_meeting = db.sc_spring_meeting.Find(id);
-            if (sc_spring_meeting == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sc_spring_meeting);
-        }
-
-        // POST: Spring_meeting/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            sc_spring_meeting sc_spring_meeting = db.sc_spring_meeting.Find(id);
-            db.sc_spring_meeting.Remove(sc_spring_meeting);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
