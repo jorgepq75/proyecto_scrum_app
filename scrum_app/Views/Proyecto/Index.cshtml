@@ -6,9 +6,14 @@
 
 <h2>Proyectos</h2>
 
-<p>
-    @Html.ActionLink("Nuevo Proyecto", "Create")
-</p>
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+    {
+    <p>
+        @Html.ActionLink("Nuevo Proyecto", "Create")
+    </p> 
+    } 
+}
+
 <table class="table">
     <tr>
         <th>
@@ -26,32 +31,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_usuario.nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_estado_proyecto.estado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fecha_creacion)
-    </td>
-    <td>
-        @Html.ActionLink(
-            linkText: "Equipo",
-            actionName: "Index",
-            controllerName: "Equipo",
-            routeValues: item,
-            htmlAttributes: new { })
-        |
-        @Html.ActionLink("Seleccionar proyecto", "Choose", item) |
-        @Html.ActionLink("Editar", "Edit", new { id=item.id_proyecto })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_usuario.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_estado_proyecto.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.ActionLink(
+                    linkText: "Equipo",
+                    actionName: "Index",
+                    controllerName: "Equipo",
+                    routeValues: item,
+                    htmlAttributes: new { })
+                |
+                @Html.ActionLink("Seleccionar proyecto", "Choose", item) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_proyecto })
+            </td>
+        </tr>
+    }
 
 </table>

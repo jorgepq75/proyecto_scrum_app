@@ -22,8 +22,16 @@ namespace scrum_app.Controllers.equipo
         public ActionResult Index(sc_proyecto proyecto)
         {
 
-            if (current_project <= 0)
+            //if (current_project <= 0)
+            //{
+            if (current_project <= 0 || (current_project != proyecto.id_proyecto && proyecto.id_proyecto > 0))
             {
+
+                if (proyecto.nombre == null)
+                {
+                    proyecto = db.sc_proyecto.Find(proyecto.id_proyecto);
+
+                }
                 CurrentProject.SetCurrentProject(proyecto);
                 current_project = CurrentProject.GetCurrentProject().id_proyecto;
 

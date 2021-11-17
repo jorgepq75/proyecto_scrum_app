@@ -71,7 +71,7 @@ namespace scrum_app.Controllers.historia_usuario
                 sc_historia_usuario hu = new sc_historia_usuario()
                 {
                     //fk_proyecto=current_project,
-                    fk_creado_por=1,//agregar usuario logueado
+                    fk_creado_por= Models.usuario.LoginModel.getUserSession().id_usuario,//agregar usuario logueado
                     descricion=historiaUsuario.descricion,
                     fecha_creacion=DateTime.Now,
                     fk_epica=current_epica,

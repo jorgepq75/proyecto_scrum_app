@@ -70,7 +70,7 @@ namespace scrum_app.Controllers.epica
                     titulo =epica.titulo,
                     fk_proyecto= current_project,
                     descricion = epica.descricion,
-                    fk_creado_por = 1,//user here
+                    fk_creado_por = Models.usuario.LoginModel.getUserSession().id_usuario,//user here
                     fecha_creacion = DateTime.Now
                 };
                 db.sc_epica.Add(e);

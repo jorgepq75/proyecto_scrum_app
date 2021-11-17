@@ -6,9 +6,15 @@
 
 <h2>Historias de usuario</h2>
 
-<p>
-    @Html.ActionLink("Nueva historia de usuario", "Create")
-</p>
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+    {
+    <p>
+        @Html.ActionLink("Nueva historia de usuario", "Create")
+    </p> 
+    } 
+}
+
+
 <table class="table">
     <tr>
         <th>
@@ -26,27 +32,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.titulo)
-    </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_epica.titulo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_estado_historia_usuario.estado)
-    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_epica.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_estado_historia_usuario.estado)
+            </td>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.fecha_creacion)
-    </td>
-    <td>
-        @Html.ActionLink("Detalle", "Details", new { id = item.id_historia_usuario }) |
-        @Html.ActionLink("Editar", "Edit", new { id = item.id_historia_usuario })
-    </td>
-</tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { id = item.id_historia_usuario }) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.id_historia_usuario })
+            </td>
+        </tr>
+    }
 
 </table>

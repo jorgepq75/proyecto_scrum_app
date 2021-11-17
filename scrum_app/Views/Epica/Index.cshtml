@@ -6,13 +6,21 @@
 
 <h2>Epicas</h2>
 
-<p>
-    @Html.ActionLink("Nueva epica", "Create")
-</p>
+@* Recibe usuario logueado y compara si el tipo de usario puede
+    agregar nuevas epicas*@
+
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+    {
+    <p>
+        @Html.ActionLink("Nueva epica", "Create")
+    </p> 
+    }
+}
+
 <table class="table">
     <tr>
         <th>
-           Título
+            Título
         </th>
         <th>
             Fecha de creación
@@ -23,30 +31,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_creacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Detalle", "Details", new { id = item.id_epica })|
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Detalle", "Details", new { id = item.id_epica })|
 
-            @Html.ActionLink(
-               linkText: "Historias de Usuario",
-               actionName: "Index",
-               controllerName: "Historia_usuario",
-               routeValues: item,
-               htmlAttributes: new { }) 
-        </td>
+                @Html.ActionLink(
+                   linkText: "Historias de Usuario",
+                   actionName: "Index",
+                   controllerName: "Historia_usuario",
+                   routeValues: item,
+                   htmlAttributes: new { })
+            </td>
 
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>

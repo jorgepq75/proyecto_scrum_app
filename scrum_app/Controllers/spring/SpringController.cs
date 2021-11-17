@@ -65,7 +65,7 @@ namespace scrum_app.Controllers.spring
                     nombre = spring.nombre,
                     fk_proyecto = current_project,
                     fecha_creacion = DateTime.Now,
-                    fk_creado_por = 1,//usuario logueado
+                    fk_creado_por = Models.usuario.LoginModel.getUserSession().id_usuario,//usuario logueado
                     fk_estado_spring=1
                 };
                 db.sc_spring.Add(s);

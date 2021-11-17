@@ -31,7 +31,7 @@
 }
 
 <div>
-    @Html.ActionLink("Regresar", "Index")
+    @Html.ActionLink("Regresar", "Index", new { scrum_app.Models.proyecto.CurrentProject.GetCurrentProject().id_proyecto }))
 </div>
 
 @section Scripts {

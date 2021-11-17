@@ -81,10 +81,13 @@ namespace scrum_app.Controllers.proyecto
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             sc_proyecto sc_proyecto = db.sc_proyecto.Find(id);
+
             if (sc_proyecto == null)
             {
                 return HttpNotFound();
             }
+
+            CurrentProject.SetCurrentProject(sc_proyecto);
 
             ProyectoModel p = new ProyectoModel()
             {
