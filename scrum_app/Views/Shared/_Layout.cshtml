@@ -34,11 +34,11 @@
             <ul class="navbar-nav ml-auto">
                 <li class="btn btn-outline-info">
                     @Html.ActionLink(
-                    linkText: "Cerrar Sesión",
-                    actionName: "closeSession",
-                    controllerName: "Login",
-                    routeValues: null,
-                    htmlAttributes: new { @class = "nav-link" })
+     linkText: "Cerrar Sesión",
+     actionName: "closeSession",
+     controllerName: "Login",
+     routeValues: null,
+     htmlAttributes: new { @class = "nav-link" })
                 </li>
 
             </ul>
@@ -49,20 +49,24 @@
             <div class="col-md-3 col-lg-2 sidebar-offcanvas bg-light pl-0 navbar-dark bg-dark" id="sidebar" role="navigation">
                 <ul class="nav flex-column sticky-top vertical_menu">
                     <li class="nav-item">@Html.ActionLink("Proyectos", "Index", "Proyecto", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
-                    @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
+                    @{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
                         {
-                            <li class="nav-item">@Html.ActionLink("Product Backlog", "Index", "Epica", new { area = "" }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Usuarios", "Index", "Usuario", new { area = "" }, new { @class = "nav-link" })</li>
+                            }
                         }
-                    }
+                            @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
+                                {
+                                    <li class="nav-item">@Html.ActionLink("Product Backlog", "Index", "Epica", new { area = "" }, new { @class = "nav-link" })</li>
+                                }
+                            }
 
-                    @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
-                        {
-                            <li class="nav-item">@Html.ActionLink("Sprint", "Index", "Spring", new { area = "" }, new { @class = "nav-link" })</li>
-                        }
-                    }
+                            @{ if (@CurrentProject.GetCurrentProject().id_proyecto > 0)
+                                {
+                                    <li class="nav-item">@Html.ActionLink("Sprint", "Index", "Spring", new { area = "" }, new { @class = "nav-link" })</li>
+                                }
+                            }
 
-                </ul>
+                        </ul>
             </div>
             <!--/col-->
 
