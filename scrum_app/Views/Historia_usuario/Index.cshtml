@@ -6,12 +6,12 @@
 
 <h2>Historias de usuario</h2>
 
-@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
     {
     <p>
         @Html.ActionLink("Nueva historia de usuario", "Create")
     </p> 
-    } 
+    }
 }
 
 
@@ -51,7 +51,11 @@
             </td>
             <td>
                 @Html.ActionLink("Detalle", "Details", new { id = item.id_historia_usuario }) |
+                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+                  {
                 @Html.ActionLink("Editar", "Edit", new { id = item.id_historia_usuario })
+                  }
+                }
             </td>
         </tr>
     }

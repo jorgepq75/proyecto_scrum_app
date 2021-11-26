@@ -9,9 +9,13 @@
     {
         <p><b>Sprint actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
     }}
-<p>
-    @Html.ActionLink("Agregar nueva", "Create")
-</p>
+@{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+  {
+        <p>
+            @Html.ActionLink("Agregar nueva", "Create")
+        </p>
+    }
+}
 <table class="table">
     <tr>
 
@@ -33,39 +37,41 @@
 
     @foreach (var item in Model)
     {
-<tr>
+        <tr>
 
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_historia_usuario.titulo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_spring.nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sc_historia_usuario.sc_estado_historia_usuario.estado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fecha_creacion)
-    </td>
-    <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_historia_usuario.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_spring.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_historia_usuario.sc_estado_historia_usuario.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
 
-        @Html.ActionLink(
-            linkText: "Ver historia",
-            actionName: "Details",
-            controllerName: "Historia_usuario",
-            routeValues: new { id = item.fk_historia_usuario },
-            htmlAttributes: new { }) |
+                @Html.ActionLink(
+                 linkText: "Ver historia",
+                 actionName: "Details",
+                 controllerName: "Historia_usuario",
+                 routeValues: new { id = item.fk_historia_usuario },
+                 htmlAttributes: new { }) |
+                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+                    {
+                        @Html.ActionLink(
+                        linkText: "Editar",
+                        actionName: "Edit",
+                        controllerName: "Historia_usuario",
+                        routeValues: new { id = item.fk_historia_usuario },
+                        htmlAttributes: new { })
 
-        @Html.ActionLink(
-            linkText: "Editar",
-            actionName: "Edit",
-            controllerName: "Historia_usuario",
-            routeValues: new { id = item.fk_historia_usuario },
-            htmlAttributes: new { })
-
-
-    </td>
-</tr>
+                        }
+                    }
+            </td>
+        </tr>
     }
 
 </table>

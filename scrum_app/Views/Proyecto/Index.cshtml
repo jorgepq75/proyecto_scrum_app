@@ -6,12 +6,12 @@
 
 <h2>Proyectos</h2>
 
-@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
     {
-    <p>
-        @Html.ActionLink("Nuevo Proyecto", "Create")
-    </p> 
-    } 
+        <p>
+            @Html.ActionLink("Nuevo Proyecto", "Create")
+        </p>
+    }
 }
 
 <table class="table">
@@ -47,15 +47,29 @@
                 @Html.DisplayFor(modelItem => item.fecha_creacion)
             </td>
             <td>
-                @Html.ActionLink(
-                    linkText: "Equipo",
-                    actionName: "Index",
-                    controllerName: "Equipo",
-                    routeValues: item,
-                    htmlAttributes: new { })
+                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+                    {
+                        @Html.ActionLink(
+                        linkText: "Equipo",
+                        actionName: "Index",
+                        controllerName: "Equipo",
+                        routeValues: item,
+                        htmlAttributes: new { })
+                    }
+
+                }
                 |
                 @Html.ActionLink("Seleccionar proyecto", "Choose", item) |
-                @Html.ActionLink("Editar", "Edit", new { id = item.id_proyecto })
+                @{
+                    if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new
+                        {
+                            id = item.id_proyecto
+                        })
+                    }
+                }
+
             </td>
         </tr>
     }
