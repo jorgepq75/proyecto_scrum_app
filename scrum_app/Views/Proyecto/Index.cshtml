@@ -6,7 +6,7 @@
 
 <h2>Proyectos</h2>
 
-@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 /*|| scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2*/)
     {
         <p>
             @Html.ActionLink("Nuevo Proyecto", "Create")
@@ -47,26 +47,30 @@
                 @Html.DisplayFor(modelItem => item.fecha_creacion)
             </td>
             <td>
-                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
-                    {
-                        @Html.ActionLink(
-                        linkText: "Equipo",
-                        actionName: "Index",
-                        controllerName: "Equipo",
-                        routeValues: item,
-                        htmlAttributes: new { })
-                    }
-
-                }
+                @*@{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+                    {*@
+                @Html.ActionLink(
+                linkText: "Equipo",
+                actionName: "Index",
+                controllerName: "Equipo",
+                routeValues: item,
+                htmlAttributes: new { })
+                @*}
+                    }*@
                 |
-                @Html.ActionLink("Seleccionar proyecto", "Choose", item) |
+                @Html.ActionLink("Seleccionar proyecto", "Choose", item)
                 @{
-                    if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+                    if (scrum_app.Models.usuario.LoginModel.getUserSession().id_usuario == item.fk_creado_por /*|| scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2*/)
                     {
-                        @Html.ActionLink("Editar", "Edit", new
-                        {
-                            id = item.id_proyecto
-                        })
+                        <a>
+                            |
+
+                            @Html.ActionLink("Editar", "Edit", new
+                            {
+                                id = item.id_proyecto
+                            })
+                        </a>
+
                     }
                 }
 

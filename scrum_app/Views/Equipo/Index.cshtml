@@ -6,9 +6,15 @@
 
 <h2>Equipo de trabajo</h2>
 
-<p>
-    @Html.ActionLink("Nuevo miembro de equipo", "Create")
-</p>
+
+
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+    {
+    <p>
+        @Html.ActionLink("Nuevo miembro de equipo", "Create")
+    </p>
+    }
+}
 <table class="table">
     <tr>
         <th>
@@ -19,16 +25,17 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
-        </td>
-        <td>
-            @item.sc_usuario.nombre-@item.sc_usuario.sc_rol.rol
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sc_proyecto.nombre)
+            </td>
+            <td>
+                @item.sc_usuario.nombre-@item.sc_usuario.sc_rol.rol
+            </td>
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>
