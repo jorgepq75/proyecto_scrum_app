@@ -60,14 +60,33 @@ namespace scrum_app.Controllers.equipo
         // GET: Equipo/Create
         public ActionResult Create()
         {
+            var equipoLista = db.sc_equipo.Include(s => s.sc_proyecto).Include(s => s.sc_usuario)
+                       .Where(c => c.fk_proyecto == current_project);
+
+
             var usuarios = db.sc_usuario
-                        .Select(x => new SelectListItem
-                        {
-                            Value = x.id_usuario.ToString(),
-                            Text = x.nombre + "-" + x.sc_rol.rol,
-                        });
+                       .Select(x => new SelectListItem
+                       {
+                           Value = x.id_usuario.ToString(),
+                           Text = x.nombre + "-" + x.sc_rol.rol,
+                       }).ToList();
+
+            var usuarios_disponibles = usuarios.ToList();
+
+            foreach (var usuario in usuarios)
+            {
+                foreach (var usuario_equipo in equipoLista)
+                {
+                    if (usuario.Value.Equals(usuario_equipo.fk_usuario.ToString()))
+                    {
+
+                        usuarios_disponibles.Remove(usuario);
+                    }
+                }
+            }
+
             ViewBag.fk_proyecto = new SelectList(db.sc_proyecto, "id_proyecto", "nombre");
-            ViewBag.fk_usuario = new SelectList(usuarios, "Value", "Text");
+            ViewBag.fk_usuario = new SelectList(usuarios_disponibles, "Value", "Text");
             return View();
         }
 
