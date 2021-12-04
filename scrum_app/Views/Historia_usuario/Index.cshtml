@@ -6,11 +6,11 @@
 
 <h2>Historias de usuario</h2>
 
-@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+@{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
     {
-    <p>
-        @Html.ActionLink("Nueva historia de usuario", "Create")
-    </p> 
+        <p>
+            @Html.ActionLink("Nueva historia de usuario", "Create")
+        </p>
     }
 }
 
@@ -50,13 +50,17 @@
                 @Html.DisplayFor(modelItem => item.fecha_creacion)
             </td>
             <td>
-                @Html.ActionLink("Detalle", "Details", new { id = item.id_historia_usuario }) |
-                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
-                  {
-                @Html.ActionLink("Editar", "Edit", new { id = item.id_historia_usuario })
-                  }
+                @Html.ActionLink("Detalle", "Details", new { id = item.id_historia_usuario })
+
+                @{ if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1)
+                    {
+                        <a>
+                            |
+                        </a>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id_historia_usuario })
+                    }
                 }
-            </td>
+                </td>
         </tr>
     }
 

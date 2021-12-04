@@ -10,9 +10,13 @@
         <p><b>Spring actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
     }}
 
-<p>
-    @Html.ActionLink("Nueva reunión", "Create")
-</p>
+@{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+    {
+        <p>
+            @Html.ActionLink("Nueva reunión", "Create")
+        </p>
+    } }
+
 <table class="table">
     <tr>
         <th>
@@ -48,9 +52,9 @@
     }
 
 </table>
-    @Html.ActionLink(
-        linkText: "Regresar",
-        actionName: "Index",
-        controllerName: "Spring",
-        routeValues: new {},
-        htmlAttributes: new { })
+@Html.ActionLink(
+    linkText: "Regresar",
+    actionName: "Index",
+    controllerName: "Spring",
+    routeValues: new { },
+    htmlAttributes: new { })

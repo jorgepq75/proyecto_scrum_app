@@ -79,7 +79,6 @@ namespace scrum_app.Controllers.equipo
                 {
                     if (usuario.Value.Equals(usuario_equipo.fk_usuario.ToString()))
                     {
-
                         usuarios_disponibles.Remove(usuario);
                     }
                 }

@@ -9,10 +9,10 @@
     {
         <p><b>Sprint actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
     }}
-@{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
+@{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 3)
   {
         <p>
-            @Html.ActionLink("Agregar nueva", "Create")
+            @Html.ActionLink("Agregar tarea al Sprint Backlog", "Create")
         </p>
     }
 }
@@ -59,17 +59,14 @@
                  controllerName: "Historia_usuario",
                  routeValues: new { id = item.fk_historia_usuario },
                  htmlAttributes: new { }) |
-                @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
-                    {
-                        @Html.ActionLink(
-                        linkText: "Editar",
-                        actionName: "Edit",
-                        controllerName: "Historia_usuario",
-                        routeValues: new { id = item.fk_historia_usuario },
-                        htmlAttributes: new { })
 
-                        }
-                    }
+                @Html.ActionLink(
+                 linkText: "Editar",
+                 actionName: "Edit",
+                 controllerName: "Historia_usuario",
+                 routeValues: new { id = item.fk_historia_usuario },
+                 htmlAttributes: new { })
+
             </td>
         </tr>
     }
