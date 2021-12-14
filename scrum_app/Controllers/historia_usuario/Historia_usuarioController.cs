@@ -121,8 +121,9 @@ namespace scrum_app.Controllers.historia_usuario
                         id_usuario=u.id_usuario,
                         nombre=u.nombre,
                         id_proyecto=e.fk_proyecto,
-                        rol=u.sc_rol.rol
-                    } ).Where(c=>c.id_proyecto==current_project)
+                        rol=u.sc_rol.rol,
+                        id_rol=u.sc_rol.id_rol
+                    } ).Where(c=>c.id_proyecto==current_project && c.id_rol==3)
                        .Select(x => new SelectListItem
                        {
                            Value = x.id_usuario.ToString(),
