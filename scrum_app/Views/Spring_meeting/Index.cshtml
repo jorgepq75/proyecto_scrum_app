@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Reuniones de Spring</h2>
+<h2>Reuniones de Sprint</h2>
 @{ if (@CurrentSpring.GetCurrentSpring().id_spring > 0)
     {
-        <p><b>Spring actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
+        <p><b>Sprint actual: </b>@CurrentSpring.GetCurrentSpring().nombre</p>
     }}
 
 @{if (scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 1 || scrum_app.Models.usuario.LoginModel.getUserSession().fk_rol == 2)
